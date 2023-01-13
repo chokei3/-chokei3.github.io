@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>米哈游-TECH OTAKUS SAVE THE WORLD</title>
+    <link rel="short icon" href="mi.png">
+    <link rel="stylesheet" href="part.css">
+    <link rel="stylesheet" href="character.css">
+</head>
+<body>
+    
+    <!--导航栏-->
+    <div class="header">
+        <!--播放器-->
+        <audio src="bg.mp3" id="music" autoplay loop>
+        </audio>
+        <a href="javascript:playPause();">
+            <img src="bfq.png" class="audio-controller" data-original="bfq2.png" id="music_btn">
+        </a> 
+        <script src="audio.js"></script>
+
+        <!--logo-->
+        <div class="site-logo">
+            <img src="mihoyo-logo.png" style="width: 85.95px;height: 29.95px;">
+        </div>
+        <!--logo end-->
+
+
+        <div class="navwrap">
+            <div class="navbar">
+                <a href="index.html" class="navitem">首页</a>
+                <a href="news.html" class="navitem">新闻</a>
+                <a to="/" class="navitem"  style="text-shadow: 0 0 10px #69e0ff,0 0 20px #69e0ff,0 0 40px #69e0ff; color: rgb(255, 255, 255);">产品</a>
+                <a href="map.html" class="navitem">发展</a>
+                <div class="tapdown">
+                    <a href="https://www.miyoushe.com/" class="navitem" target="_blank">社区</a>
+                    <ul class="dis">
+                        <li><a href="https://www.miyoushe.com/" target="_blank">米游社</a></li>
+                        <li><a href="know.html">了解我们</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="header-right">
+            <a href="https://jiazhang.mihoyo.com" class="cz" target="_blank">
+                <span>成长关爱系统</span>
+                <img src="love.png" alt="">
+            </a>
+            <div class="denglu">
+                <button class="denglu-btn" onclick="denglushow()">
+                    <span>登录</span>
+                    
+                    <img src="denglu.png" alt="">
+                </button>
+                <div id="denglublack">
+                    <div class="dengluwin">
+                        <div class="firmlogo">
+                            <img src="mihoyo.png" alt="">
+                        </div>
+                        <div class="dengluclose_btn">
+                            <button class="byebye" onclick="dengluhide()"></button>
+                        </div> 
+                        <div class="denglu-content">
+                        <div id="tab">
+                            <div id="tabNav">
+                                <ul>
+                                    <li class="active">
+                                        <div class="li1">
+                                            验证码登录
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li1">
+                                            密码登录
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="main">
+                                <div class="item show">
+                                    <!-- 验证码登录 -->
+                                    <form class="denglu-form" action="#">
+                                        <div>
+                                            <input class="acc" type="text" id="username2" value="" placeholder="手机号注册/登录"/>
+                                        </div>
+                                        <div>
+                                            <input class="acc" type="pass" id="yzm" placeholder="验证码"/>
+                                            <button class="input-inner" onclick=Num() >获取验证码</button>
+                                            <script>
+                                                function Num()
+                                                {
+                                                    if(username2.value==""){
+                                                        alert("手机号格式错误");
+                                                    }
+                                                    else{
+                                                        document.getElementById("yzm").value=parseInt(Math.random()*888888+111111);
+                                                    } 
+                                                }
+                                            </script>
+                                        </div>
+                                        
+                                    </form>
+                                    <from  action="#">
+                                            <input class="submit" type="submit" id="log2" value="登录"/>
+                                    </from>
+                                    <script>
+                                        
+                                        let username2=document.getElementById("username2");
+                                        let yzm=document.getElementById("yzm");
+                                        let btn1=document.getElementById("log2");
+                                        btn1.onclick=function(){
+                                            if(yzm.value==''){
+                                                alert("请输入验证码")
+                                            }
+                                            else if(username2.value==localStorage.getItem('username1')){
+                                                alert("登录成功");
+                                                window.location.href="index.html"	
+                                            }
+                                            else{
+                                            alert("账号或验证码错误");
+                                            }
+                                        }
+                                    </script>
+                                    
+                                    <div class="down">
+                                        <button id="question" onclick="showqu()">登录遇到问题？</button>
+                                        <div id="quover">
+                                            <div class="ques">
+                                              <div class="qu-content">
+                                                <button class="xx" onclick="hidequ()"></button>
+                                                <div class="ques-title">遇到问题</div>
+                                              <div class="question_btn">
+                                                <a href="forget.html">
+                                                    <button class="meet-btn">忘记密码</button>
+                                                </a> 
+                                                <a href="https://user.mihoyo.com/#/questions?game=sdk" target="_blank">
+                                                    <button class="meet-btn btn2">常见问题</button>
+                                                </a>
+                                              </div>
+                                            </div>
+                                            </div>
+                                          </div>
+                                          <script>
+                                            function showqu(){
+                                            var overlay = document.getElementById("quover");
+                                            overlay.style.display = "block";
+                                          }
+                                          function hidequ(){
+                                            var overlay = document.getElementById("quover");
+                                            overlay.style.display = "none";
+                                          }
+                                          </script>
+                                        <a href="zhuce.html" class="zhuce">立即注册</a>
+                                        
+                                    </div>
+                                    <div class="down-yzm">
+                                        <p class="yzm-tip">
+                                            <span>未注册的手机验证后将自动登录。注册/登录即代表您同意并遵守</span>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/agreement?hideBack=true">《米哈游通行证用户服务协议》</a>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/privacyAgreement?hideBack=true">《米哈游通行证用户个人信息及隐私保护政策》</a>
+                                        </p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- 密码登录 -->
+                                <div class="item">
+                                    
+                                    <form class="denglu-form" action="#">
+                                        <div><input class="acc" type="text" id="username" placeholder="手机号/邮箱"/></div>
+                                        <div><input class="acc" type="password" id="pwd" placeholder="密码"/></div>   
+                                    </form>
+                                    <from  action="#">
+                                            <input class="submit" type="submit" id="log" value="登录"/>
+                                    </from>
+                                    
+                                    <div class="down">
+                                        <button id="question" onclick="showqu2()">登录遇到问题？</button>
+                                        <div id="quover2">
+                                            <div class="ques">
+                                              <div class="qu-content">
+                                                <button class="xx" onclick="hidequ2()"></button>
+                                                <div class="ques-title">遇到问题</div>
+                                              <div class="question_btn">
+                                                <a href="forget.html">
+                                                    <button class="meet-btn">忘记密码</button>
+                                                </a> 
+                                                <a href="https://user.mihoyo.com/#/questions?game=sdk" target="_blank">
+                                                    <button class="meet-btn btn2">常见问题</button>
+                                                </a>
+                                              </div>
+                                            </div>
+                                            </div>
+                                          </div>
+                                          <script>
+                                            function showqu2(){
+                                                var overlay = document.getElementById("quover2");
+                                                overlay.style.display = "block";
+                                            }
+                                            function hidequ2(){
+                                                var overlay = document.getElementById("quover2");
+                                                overlay.style.display = "none";
+                                            }
+                                          </script>
+                                        <a href="zhuce.html" class="zhuce">立即注册</a>
+                                    </div>
+                                    <div class="down-yzm">
+                                        <p class="yzm-tip">
+                                            <span>登录即代表您同意并遵守</span>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/agreement?hideBack=true">《米哈游通行证用户服务协议》</a>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/privacyAgreement?hideBack=true">《米哈游通行证用户个人信息及隐私保护政策》</a>
+                                        </p>
+                                        </div>
+                                </div>
+                                
+                                <script>
+                                    let username=document.getElementById("username");
+                                    let pwd=document.getElementById("pwd");
+                                    let btn=document.getElementById("log");
+                                    
+                                    
+                                    btn.onclick=function(){
+
+                                        
+                                        
+                                        
+                                        if(username.value==localStorage.getItem('username1') && pwd.value==localStorage.getItem('pwd1')){
+                                            alert("登录成功");
+                                            window.location.href="index.html"
+                                                
+                                        }else{
+                                            alert("账号或密码错误");
+                                        }
+                                    }
+                                </script>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            let tab=document.querySelector("#tabNav");
+                            let li=tab.querySelectorAll("li");
+                            let item=document.querySelectorAll(".item");
+                            for(let i=0;i<li.length;i++){
+                                li[i].onclick=function(){
+                                    li.forEach(value=>{value.className='';});
+                                    li[i].className='active';
+                                    item.forEach(value=>{value.className='item'});
+                                    item[i].className='item show';
+                                }
+                            }
+                        </script>		
+                    </div>
+                    
+                </div>  
+                </div>
+            </div>
+                  <script>
+                     function denglushow(){
+                        var overlay = document.getElementById("denglublack");
+                        denglublack.style.display = "block";
+                    }
+                    function dengluhide(){
+                        var overlay = document.getElementById("denglublack");
+                        denglublack.style.display = "none";
+                    }
+                  </script>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--导航栏end-->
+
+        <!-- 主页 -->
+        <section class="main">
+            <img src="char-bg.png" class="char-bg" alt="">
+            <div class="bg">
+                <img src="c-yoyo-bg1.webp" id="bg" alt="">
+            </div>
+            <script>
+                var arr=new Array()
+                arr[0]="c-yoyo-bg2.jpg";
+                arr[1]="c-yoyo-bg1.webp";
+                var i=0;
+                function image()
+                {
+                    var image=document.getElementById("bg");
+                    image.src=arr[i];
+                    i++;
+                    if(i>1){i=0};             
+                };
+                setInterval(function(){
+                image();
+                },3000);
+                
+            
+            </script>
+
+            <!-- 侧边栏 -->
+        <ul class="char-sidebar">
+            <li class="char-item">
+                <a href="character.html">崩坏学园2</a>
+            </li>
+            <li class="char-item">
+                <a href="character-bh3.html">崩坏3</a>
+            </li>
+            <li class="char-item">
+                <a href="character-wd.html">未定事件簿</a>
+            </li>
+            <li class="char-item">
+                <a href="character-ys.html">原神</a>
+            </li>
+            <li class="char-item">
+                <a href="character-xq.html">崩坏：星穹铁道</a>
+            </li>
+            <li class="char-item">
+                <a href="character-jql.html">绝区零</a>
+            </li>
+            <li class="char-item">
+                <a href="character-mys.html">米游社</a>
+            </li>
+            <li class="char-item1">
+                <a to="/">人工桌面</a>
+            </li>
+        </ul>
+        <!-- 侧边栏end -->
+
+        <!-- 内容 -->
+
+        <div id="news-tab">
+            <div id="news-tabNav">
+                <div class="btn-prev"></div>
+                <div class="btn-next"></div>
+                <ul>
+                    <li class="active1">
+                        <img src="yoyo1-tj.png" alt="">
+                        <p>yoyo</p>
+                    </li>
+                    <li>
+                        <img src="yoyo2-tj.png" alt="">
+                        <p>鹿鸣</p>
+                    </li>
+                    <li>
+                        <img src="yoyo3-tj.png" alt="">
+                        <p>lumi</p>
+                    </li>
+                    <li>
+                        <img src="yoyo4-tj.png" alt="">
+                        <p>鹿鸣</p>
+                    </li>
+                    <li style="margin-right: 0;">
+                        <img src="yoyo5-tj.png" alt="">
+                        <p>yoyo</p>
+                    </li>
+                </ul>
+            </div>
+            <div id="newscontent-main">
+                <div class="news-item" style="display: block;">
+                    <!-- 1 -->
+                    <div class="main-show">
+
+                        <img src="yoyo1.png" alt="" class="char-person">
+                        <div class="char-content">
+                            <div class="yoyo-detail-title">
+                                <p>元旦快乐，要开心噢🐰
+                                    <br />
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp收下鹿鸣的跨年祝福吧~
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2 -->
+                <div class="news-item" style="display: none;">
+                    <div class="main-show">
+
+                        <img src="yoyo2.png" alt="" class="char-person" style="top: 60px;">
+                        <div class="char-content">
+                            <div class="yoyo-detail-title" style="left: 150px;top: 60px;">
+                                <p>你要和鹿鸣一起打雪仗吗？☃️
+                                    <br />
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp祝大家吉祥如意，吼嗷
+                                    <br />~ m( =∩王∩= )m
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3 -->
+                <div class="news-item" style="display: none;">
+                    <div class="main-show">
+
+                        <img src="yoyo3.png" alt="" class="char-person">
+                        <div class="char-content">
+                            <div class="yoyo-detail-title" style="top: 120px;left: 200px;">
+                                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp呼噜噜~
+                                    <br />
+                                    来和新朋友一起玩吧
+                                </p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <!-- 4 -->
+                <div class="news-item" style="display: none;">
+                    <div class="main-show">
+
+                        <img src="yoyo4.png" alt="" class="char-person" style="left: -300px;">
+                        <div class="char-content">
+                            <div class="yoyo-detail-title" style="left: 100px;">
+                                <p>I Just Want Attention
+                                    <br />
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp感谢大家的喜爱和关注~
+                                </p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <!-- 5 -->
+                <div class="news-item" style="display: none;">
+                    <div class="main-show">
+
+                        <img src="yoyo5.png" alt="" class="char-person" style="left: -250px;top: 50px;">
+                        <div class="char-content">
+                            <div class="yoyo-detail-title" style="top: 50px;left: 550px;">
+                                <p>春暖花开，
+                                    <br />
+                                    <br />
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp来吹泡泡吧°ºO
+                                </p>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+           
+            </div>
+        </div>
+        <script>
+            var lis=document.querySelector('#news-tabNav ul').querySelectorAll('li');
+            var divs=document.querySelector('#newscontent-main').querySelectorAll('.news-item');
+            for(var a=0;a<lis.length;a++){
+                lis[a].setAttribute('index',a);
+                lis[a].onclick=function(){
+                    for(var a=0;a<lis.length;a++){
+                        lis[a].className='';
+                    }
+                    this.className='active1';
+                    var index=this.getAttribute('index');
+                    for(var a=0;a<divs.length;a++){
+                        divs[a].style.display='none';
+                    }
+                    divs[index].style.display='block';
+                }
+            }
+        </script>	
+        
+        <div class="character-title">
+            <div class="char-name">
+                <span class="enname-anim">N0va Desktop</span>
+            </div>
+            <div class="name-down">
+                <p>米哈游旗下动态桌面软件。<br /><br />一键点击唤醒鹿鸣，感受专属陪伴和沉浸式体验。</p>
+            </div>
+        </div> 
+        
+        
+        <div class="bfq">
+            <div class="video-entry">
+                <div class="video">
+                        <button class="poster-video" onclick="videoshow();playVid()">
+                        </button>
+                        <p>INTRO VIDEO</p>
+                </div>
+            </div>
+            <div id="blackbg">
+                <div class="videoplay">
+                    <div class="lxz">
+                        <video id="yxr" src="https://webstatic.mihoyo.com/upload/op-public/2021/10/03/b30fb141553d7ebbd882c64438a4ec6d_7400351486462137037.mp4" controls width="100%" height="auto" ></video>
+                        <div class="video_btn">
+                            <button class="videoclose_btn" onclick="videohide();pauseVid()"></button>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <script>
+                var music = document.getElementById('music');    
+                var music_btn = document.getElementById('music_btn');    
+                function videoshow(){
+                    var overlay = document.getElementById("blackbg");
+                    blackbg.style.display = "block";
+                    music.pause();    
+                    music_btn.src = 'bfq2.png';
+                }
+                function videohide(){
+                    var overlay = document.getElementById("blackbg");
+                    blackbg.style.display = "none";
+                    music.play();    
+                    music_btn.src = 'bfq.png';  
+                }
+                var x = document.getElementById("yxr")
+                function playVid(){ 
+                    x.play();
+                } 
+                function pauseVid(){ 
+                    x.pause(); 
+                } 
+            </script>
+        </div>
+    </div>
+        <!-- 内容end -->
+        </section>
+        <!-- 主页end -->
+
+    <!-- 页脚 -->
+    <section class="footer">
+        <div class="mihoyo-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-box">
+                        <img src="mihoyo-logo.png" alt="" class="logo-big">
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-link">
+                        <div>
+                            <span class="protocol1">隐私政策</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">自律公约</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">廉政举报</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">联系我们</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">加入我们</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol"><a href="report.html" style="color: #fff;">报告</a></span>
+                        </div>
+                    </div>
+                    <div class="footer-advice">
+                        <p>
+                            健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。
+                        </p>
+                        <div class="inline-info">
+                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=沪公网安备31010402001113号" target="_blank" style="color: #999;">
+                                沪公网安备31010402001113号
+                            </a>
+                            <span class="split-line">|</span>
+                            <span class="footer-filing-item">增值电信业务经营许可证：沪B2-20190555</span>
+
+                        </div>
+                    </div>
+                    <div class="footer-filing">
+                        <div class="footer-filing-tip">
+                            <span>互联网违法不良信息举报邮箱: tousu@mihoyo.com</span>
+                            <span>互联网违法不良信息举报电话: 021-60371750 （工作时间：每天10点 - 20点）</span>
+                        </div>
+                    </div>
+                    <div class="footer-tip">
+                        亲爱的市民朋友，上海警方反诈劝阻电话“962110”系专门针对避免您财产被骗受损而设，请您一旦收到来电，立即接听
+                    </div>
+                    <div class="footer-filing-content">
+                        <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="color: #999;">
+                            沪ICP备19018275号-4
+                        </a>
+                        <span class="split-line">|</span>
+                        <span class="footer-filing-item">沪网文〔2022〕1334-052号</span>
+                    </div>
+                    <div class="guanai-phone">
+                        未成年成长关爱热线：021-60371740 （服务时间：8:00-23:00）
+                    </div>
+                    <div class="footer-phone">
+                        <div class="mihoyo-copyright">©miHoYo | 上海米哈游影铁科技有限公司</div>
+                        <div class="complaint-phone">客服电话：400-666-6312</div>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="https://v.yunaq.com/certificate?domain=www.mihoyo.com&amp;from=label&amp;code=90020" target="_blank">
+                            <img src="icon1.png" alt="">
+                        </a>
+                        <a href="http://www.shjbzx.cn/" target="_blank">
+                            <img src="icon2.png" alt="">
+                        </a>
+                        <a href="https://www.12377.cn/" target="_blank">
+                            <img src="icon3.png" alt="">
+                        </a>
+                        <a href="http://sq.ccm.gov.cn:80/ccnt/sczr/service/business/emark/toDetail/8955A9DDE1FF8B6CE053010A14ACA87F" target="_blank">
+                            <img src="icon4.png" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="icon5.png" alt="">
+                        </a>
+                        <a href="http://wap.scjgj.sh.gov.cn/businessCheck/verifKey.do?showType=extShow&amp;serial=9031000020190314100540000004452331-SAIC_SHOW_310000-20200120150237277642&amp;signData=MEYCIQCjn9IhIKfUHjPlx9W6xrYPZ4GA73Blopwp0iEzSX0OHQIhAOZm3tnlWLrgVXMtvgp5OibauIgiAa+2d+MQ7qzMIm6t" target="_blank">
+                            <img src="icon6.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 页脚end -->
+    
+</body>
+</html>
