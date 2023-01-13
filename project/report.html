@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>米哈游-TECH OTAKUS SAVE THE WORLD</title>
+    <link rel="short icon" href="mi.png">
+    <link rel="stylesheet" href="part.css">
+    <link rel="stylesheet" href="know.css">
+</head>
+<body>
+    <!--导航栏-->
+    <div class="header">
+        <!--播放器-->
+        <audio src="bg.mp3" id="music" autoplay loop>
+        </audio>
+        <a href="javascript:playPause();">
+            <img src="bfq.png" class="audio-controller" data-original="bfq2.png" id="music_btn">
+        </a> 
+        <script src="audio.js"></script>
+
+        <!--logo-->
+        <div class="site-logo">
+            <img src="mihoyo-logo.png" style="width: 85.95px;height: 29.95px;">
+        </div>
+        <!--logo end-->
+
+
+        <div class="navwrap">
+            <div class="navbar">
+                <a href="index.html" class="navitem">首页</a>
+                <a href="news.html" class="navitem">新闻</a>
+                <a href="character.html" class="navitem">产品</a>
+                <a href="map.html" class="navitem">发展</a>
+                <div class="tapdown">
+                    <a href="https://www.miyoushe.com/" class="navitem" target="_blank">社区</a>
+                    <ul class="dis">
+                        <li><a href="https://www.miyoushe.com/" target="_blank">米游社</a></li>
+                        <li><a href="know.html">了解我们</a></li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="header-right">
+            <a href="https://jiazhang.mihoyo.com" class="cz" target="_blank">
+                <span>成长关爱系统</span>
+                <img src="love.png" alt="">
+            </a>
+            <div class="denglu">
+                <button class="denglu-btn" onclick="denglushow()">
+                    <span>登录</span>
+                    
+                    <img src="denglu.png" alt="">
+                </button>
+                <div id="denglublack">
+                    <div class="dengluwin">
+                        <div class="firmlogo">
+                            <img src="mihoyo.png" alt="">
+                        </div>
+                        <div class="dengluclose_btn">
+                            <button class="byebye" onclick="dengluhide()"></button>
+                        </div> 
+                        <div class="denglu-content">
+                        <div id="tab">
+                            <div id="tabNav">
+                                <ul>
+                                    <li class="active">
+                                        <div class="li1">
+                                            验证码登录
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li1">
+                                            密码登录
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="main">
+                                <div class="item show">
+                                    <!-- 验证码登录 -->
+                                    <form class="denglu-form" action="#">
+                                        <div>
+                                            <input class="acc" type="text" id="username2" value="" placeholder="手机号注册/登录"/>
+                                        </div>
+                                        <div>
+                                            <input class="acc" type="pass" id="yzm" placeholder="验证码"/>
+                                            <button class="input-inner" onclick=Num() >获取验证码</button>
+                                            <script>
+                                                function Num()
+                                                {
+                                                    if(username2.value==""){
+                                                        alert("手机号格式错误");
+                                                    }
+                                                    else{
+                                                        document.getElementById("yzm").value=parseInt(Math.random()*888888+111111);
+                                                    } 
+                                                }
+                                            </script>
+                                        </div>
+                                        
+                                    </form>
+                                    <from  action="#">
+                                            <input class="submit" type="submit" id="log2" value="登录"/>
+                                    </from>
+                                    <script>
+                                        
+                                        let username2=document.getElementById("username2");
+                                        let yzm=document.getElementById("yzm");
+                                        let btn1=document.getElementById("log2");
+                                        btn1.onclick=function(){
+                                            if(yzm.value==''){
+                                                alert("请输入验证码")
+                                            }
+                                            else if(username2.value==localStorage.getItem('username1')){
+                                                alert("登录成功");
+                                                window.location.href="index.html"	
+                                            }
+                                            else{
+                                            alert("账号或验证码错误");
+                                            }
+                                        }
+                                    </script>
+                                    
+                                    <div class="down">
+                                        <button id="question" onclick="showqu()">登录遇到问题？</button>
+                                        <div id="quover">
+                                            <div class="ques">
+                                              <div class="qu-content">
+                                                <button class="xx" onclick="hidequ()"></button>
+                                                <div class="ques-title">遇到问题</div>
+                                              <div class="question_btn">
+                                                <a href="forget.html">
+                                                    <button class="meet-btn">忘记密码</button>
+                                                </a> 
+                                                <a href="https://user.mihoyo.com/#/questions?game=sdk" target="_blank">
+                                                    <button class="meet-btn btn2">常见问题</button>
+                                                </a>
+                                              </div>
+                                            </div>
+                                            </div>
+                                          </div>
+                                          <script>
+                                            function showqu(){
+                                            var overlay = document.getElementById("quover");
+                                            overlay.style.display = "block";
+                                          }
+                                          function hidequ(){
+                                            var overlay = document.getElementById("quover");
+                                            overlay.style.display = "none";
+                                          }
+                                          </script>
+                                        <a href="zhuce.html" class="zhuce">立即注册</a>
+                                        
+                                    </div>
+                                    <div class="down-yzm">
+                                        <p class="yzm-tip">
+                                            <span>未注册的手机验证后将自动登录。注册/登录即代表您同意并遵守</span>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/agreement?hideBack=true">《米哈游通行证用户服务协议》</a>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/privacyAgreement?hideBack=true">《米哈游通行证用户个人信息及隐私保护政策》</a>
+                                        </p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- 密码登录 -->
+                                <div class="item">
+                                    
+                                    <form class="denglu-form" action="#">
+                                        <div><input class="acc" type="text" id="username" placeholder="手机号/邮箱"/></div>
+                                        <div><input class="acc" type="password" id="pwd" placeholder="密码"/></div>   
+                                    </form>
+                                    <from  action="#">
+                                            <input class="submit" type="submit" id="log" value="登录"/>
+                                    </from>
+                                    
+                                    <div class="down">
+                                        <button id="question" onclick="showqu2()">登录遇到问题？</button>
+                                        <div id="quover2">
+                                            <div class="ques">
+                                              <div class="qu-content">
+                                                <button class="xx" onclick="hidequ2()"></button>
+                                                <div class="ques-title">遇到问题</div>
+                                              <div class="question_btn">
+                                                <a href="forget.html">
+                                                    <button class="meet-btn">忘记密码</button>
+                                                </a> 
+                                                <a href="https://user.mihoyo.com/#/questions?game=sdk" target="_blank">
+                                                    <button class="meet-btn btn2">常见问题</button>
+                                                </a>
+                                              </div>
+                                            </div>
+                                            </div>
+                                          </div>
+                                          <script>
+                                            function showqu2(){
+                                                var overlay = document.getElementById("quover2");
+                                                overlay.style.display = "block";
+                                            }
+                                            function hidequ2(){
+                                                var overlay = document.getElementById("quover2");
+                                                overlay.style.display = "none";
+                                            }
+                                          </script>
+                                        <a href="zhuce.html" class="zhuce">立即注册</a>
+                                    </div>
+                                    <div class="down-yzm">
+                                        <p class="yzm-tip">
+                                            <span>登录即代表您同意并遵守</span>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/agreement?hideBack=true">《米哈游通行证用户服务协议》</a>
+                                            <a target="_blank" href="https://user.mihoyo.com/#/privacyAgreement?hideBack=true">《米哈游通行证用户个人信息及隐私保护政策》</a>
+                                        </p>
+                                        </div>
+                                </div>
+                                
+                                <script>
+                                    let username=document.getElementById("username");
+                                    let pwd=document.getElementById("pwd");
+                                    let btn=document.getElementById("log");
+                                    
+                                    
+                                    btn.onclick=function(){
+
+                                        
+                                        
+                                        
+                                        if(username.value==localStorage.getItem('username1') && pwd.value==localStorage.getItem('pwd1')){
+                                            alert("登录成功");
+                                            window.location.href="index.html"
+                                                
+                                        }else{
+                                            alert("账号或密码错误");
+                                        }
+                                    }
+                                </script>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            let tab=document.querySelector("#tabNav");
+                            let li=tab.querySelectorAll("li");
+                            let item=document.querySelectorAll(".item");
+                            for(let i=0;i<li.length;i++){
+                                li[i].onclick=function(){
+                                    li.forEach(value=>{value.className='';});
+                                    li[i].className='active';
+                                    item.forEach(value=>{value.className='item'});
+                                    item[i].className='item show';
+                                }
+                            }
+                        </script>		
+                    </div>
+                    
+                </div>  
+                </div>
+            </div>
+                  <script>
+                    function denglushow(){
+                        var overlay = document.getElementById("denglublack");
+                        denglublack.style.display = "block";
+                    }
+                    function dengluhide(){
+                        var overlay = document.getElementById("denglublack");
+                        denglublack.style.display = "none";
+                    }
+                  </script>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--导航栏end-->
+
+
+
+    <section class="main1">
+        <div class="decoration">
+            <img src="map-side.png" alt="">
+        </div>
+        <div class="line">
+            <img src="news-line.png" alt="">
+        </div>
+
+        <div class="page">
+            <div class="page-title">我的报告
+                <b>My report</b>
+            </div>
+            <div class="page-slg">
+                <div class="anim">
+                    <p style="white-space: pre-wrap; text-align: center;">我想把mihoyo讲给你听</p>
+                </div>
+            </div>
+            <div class="mihoyo-desc">
+                <p style="white-space: pre-wrap;">因为图片内容较多，加载会很慢，建议<strong>等待各个页面加载完毕后</strong>再进行体验，以获得最佳观感。</p>
+                <p style="white-space: pre-wrap;">接下来听听我的长篇大论吧。</p>
+            </div>
+            <div class="about-intro">
+                <div class="about-intro-title1">
+                制作成员
+                <b> Group member</b>
+                </div>
+                <div class="mihoyo-desc">
+                    <div>
+                        <p style="white-space: pre-wrap;">陈温欣   班级：软件12班  学号：0223837</p>
+                    </div>
+                </div>
+                <div class="about-intro-title1">
+                    网页整体
+                    <b>Web page</b>
+                </div>
+                <div class="mihoyo-desc">
+                    <div>
+                        <p style="white-space: pre-wrap;">网站名称为<img src="mi.png" style="width: 15px;padding: 0 0;">米哈游-TECH OTAKUS SAVE THE WORLD，网站名称中插入logo图片，但会根据浏览器不同，可能会被背景音乐标识遮挡。制作主题围绕米哈游公司进行介绍，会选择此主题是出于接触米哈游有一段时间，加上二次元属性，让我选择了这个熟悉的主题下手。</p>
+                        <p style="white-space: pre-wrap;">整个网站由16个html组成，分为<strong>主要页面</strong>（index.html，news.html，character.html，map.html，know.html），<strong>注册页面</strong>（zhuce.html，forget.html，next.html），<strong>侧边栏页面</strong>（character-bh3.html，character-jql.html，character-mys.html，character-wd.html，character-xq.html，character-yoyo.html，character-ys.html）以及<strong>报告网页</strong>（report.html）。</p>
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>网站结构</strong></p>
+                        <p style="white-space: pre-wrap;">主要页面，侧边栏页面和报告界面都由导航栏，主要内容和页脚组成（导航栏和页脚样式都由part.css控制，样式差别不大，主要模板参考下面index样式图）。注册页面由主要内容和页脚构成，所有注册页面风格一致，从上到下是logo，内容栏，页脚。</p>
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>网站模块</strong></p>
+                        <p style="white-space: pre-wrap;">除注册页面，其他页面均可通过导航栏或侧边栏自由进入其他网页。注册页面可成功完成任务后返回index页面，forget页面可点击返回键返回index页面。</p>
+                        <p style="white-space: pre-wrap;">经过多机测试后，由于页面尺寸不同而导致了一些错位bug，放上调试页面使用的电脑的页面，以做示例：</p>
+                        <img src="shot1.png" alt="">
+                        <img src="shot2.png" alt="">
+                        <img src="shot3.png" alt="">
+                        <img src="shot4.png" alt="">
+                        <img src="shot5.png" alt="">
+                        <img src="shot6.png" alt="">
+                        <img src="shot7.png" alt="">
+                        <img src="shot8.png" alt="">
+                        <img src="shot9.png" alt="">
+                    </div>
+                </div>
+                <div class="about-intro-title1">
+                    网站内容
+                    <b>Web content</b>
+                </div>
+                <div class="mihoyo-desc">
+                    <div>
+                        <p style="white-space: pre-wrap;">工具：Vscode、ps、格式工厂</p>
+                        <p style="white-space: pre-wrap;">技术：html、css、js、ps</p>
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>步骤</strong></p>
+                        <p style="white-space: pre-wrap;">（1）设计整个网站的大致结构；</p>
+                        <p style="white-space: pre-wrap;">（2）寻找并处理网站所需要的素材；</p>
+                        <p style="white-space: pre-wrap;">（3）将每个子网页制作大概section结构，划分各个区域盒子；</p>
+                        <p style="white-space: pre-wrap;">（4）为每个盒子添加具体内容；</p>
+                        <p style="white-space: pre-wrap;">（5）制作登录系统；</p>
+                        <p style="white-space: pre-wrap;">（6）进行网站内测，在不同机型和浏览器上打开，根据反馈进行修改。</p>
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>问题</strong></p>
+                        <p style="white-space: pre-wrap;">其实代码出现过很多问题，删删添添的导致代码有些地方格式不是很整齐标致。主要是在js方面，特别是登录系统。三个还没解决的令我印象深刻问题是：</p>
+                        <p style="white-space: pre-wrap;">1、在登录弹窗中获取验证码时会出现登录弹窗关闭的bug，bug出现几率为大概50%，尚未找到原因。</p>
+                        <p style="white-space: pre-wrap;">2、登录成功后无法把导航栏中的登录按钮的display改为none或将innerHTML改为用户名，如果触发按钮是弹窗关闭按钮，display更改效果可以生效。但是如果触发按钮是登录按钮，则效果无效。尝试多次后未能实现，所以失败删除。</p>
+                        <p style="white-space: pre-wrap;">3、因为最终验证浏览器是Google，但是Google并不能媒体自动播放，背景视频因为加了muted静音属性可以播放，但是背景音乐必须点击导航栏中的播放器才能播放。</p>
+                        <p style="white-space: pre-wrap;">其他还存在着不少的问题，比如上传到GitHub上后，伪元素加载速度非常慢，甚至不能加载（目前只在我自己的电脑发现过这种情况）；比如换了不同尺寸的页面后，会出现元素错位的现象，换了不同电脑有些动画会很鬼畜，这是因为制作时没考虑到这些问题。</p>
+                    </div>
+                </div>
+                <div class="about-intro-title1">
+                    网站亮点
+                    <b>Web highlights</b>
+                </div>
+                <div class="mihoyo-desc">
+                    <div>
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>完成要求</strong></p>
+                        <p style="white-space: pre-wrap;">表格table</p>
+                        <img src="table.png" alt="" style="width: 80%;">
+                        <img src="table1.png" alt="">
+                        <p style="white-space: pre-wrap;">图片img</p>
+                        <img src="img.png" alt="" style="width: 35%;">
+                        <img src="img1.png" alt="" style="width: 20%;">
+                        <p style="white-space: pre-wrap;">列表ul</p>
+                        <img src="ul.png" alt="" style="width: 40%;">
+                        <img src="ul1.png" alt="">
+                        <p style="white-space: pre-wrap;">float+clear布局</p>
+                        <img src="float.png" alt="" style="width: 30%;">
+                        <p style="white-space: pre-wrap;">position定位</p>
+                        <img src="position2.png" alt="" style="width: 30%;">
+                        <img src="position1.png" alt="" style="width: 50%;">
+                        <p style="white-space: pre-wrap;">文字浮于图片上</p>
+                        <img src="wz.png" alt="">
+                        <p style="white-space: pre-wrap;">伪类</p>
+                        <img src="wl2.png" alt="" style="width: 55%;">
+                        <img src="wl1.png" alt="" style="width: 40%;">
+                        <p style="white-space: pre-wrap;">伪元素</p>
+                        <img src="wys.png" alt="" style="width:60%;">
+                        <img src="wys2.png" alt="" style="width: 30%;">
+                        <img src="wys1.png" alt="" style="width: 70%;">
+                        <img src="wys3.png" alt="" style="width: 28%;">
+                        <p style="white-space: pre-wrap;">二级导航栏、侧边栏</p>
+                        <img src="cb.png" alt="" style="width: 25%;">
+                        <img src="ej.png" alt="" style="width: 20%;">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>大量动画</strong></p>
+                        <img src="arrow.gif" alt="" style="width: 10%;left: 45%;position: relative;">
+                        <img src="char.gif" alt="">
+                        <img src="title.gif" alt="">
+                        <img src="title1.gif" alt="">
+                        <img src="fydh.gif" alt="">
+                        <img src="bg.gif" alt="">
+                        <p style="white-space: pre-wrap;">（此处指背景动画，背景是模糊化处理，而不是本来就这么糊）</p>
+                        <img src="jg.gif" alt="">
+                        <img src="zqq.gif" alt="" style="width: 10%;position: relative;left: 45%;">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>可控播放器和弹窗（均利用JS完成）</strong></p>
+                        <img src="bfq.gif" alt="" style="width: 10%;left: 45%;position: relative;">
+                        <img src="video.gif" alt="">
+                        <img src="video2.gif" alt="">
+                        <img src="denglu.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>轮播图（均利用JS完成）</strong></p>
+                        <img src="lbt.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>点击按钮触发翻页（均利用JS完成）</strong></p>
+                        <img src="tabNav.gif" alt="">
+                        <img src="fy.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>感应名片</strong></p>
+                        <img src="gymp.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>查看更多（均利用JS完成）</strong></p>
+                        <img src="ckgd.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>页面开屏</strong></p>
+                        <img src="open.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>登陆系统（均利用JS完成）</strong></p>
+                        <img src="dlxt.gif" alt="">
+                        <p style="white-space: pre-wrap;">登录系统能做到真正的注册，登录，修改密码。验证码为随机数。登陆系统虽然有些问题，比如不能核对验证码的value，因为验证码不是确定的值，这不是我目前的知识领域可以达到的。但是登陆系统能识别你是否填了信息，信息是否正确等。但是没考虑其兼容性，登陆系统在某些浏览器内并不能使用，如Firefox，经过目前测试，登录系统在edge和Google上可以正常使用（没测试别的是因为我和测试者只有这些浏览器）。虽然不知道这个登录系统有什么用处，但是存在即合理。</p>
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>flex布局</strong></p>
+                        <img src="flex.png" alt="" style="width: 45%;">
+                        <img src="flex3.png" alt="" style="width: 50%;">
+                        <img src="flex1.png" alt="" style="width: 40%;">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>文字样式</strong></p>
+                        <p style="white-space: pre-wrap;">新闻标题等采用了溢出隐藏，结尾省略号，单行，和日期分居两侧等效果。</p>
+                        <img src="news-title.png" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>视差滚动名片</strong></p>
+                        <p style="white-space: pre-wrap;">产品页的米哈游发展历程其实是做了滚动视差处理，但是由于背景图一致，所以效果并不明显，但能看见文字的图片的位置关系发送改变。</p>
+                        <img src="sc.gif" alt="">
+                        <p style="white-space: pre-wrap; min-height: 1.5em;"></p><p style="white-space: pre-wrap;"><strong>利用伪元素来制造效果</strong></p>
+                        <img src="wl.gif" alt="" style="width:40%;position: relative;left: 30%;">
+                        <img src="wl1.gif" alt="" style="width: 60%;position: relative;left: 20%;">
+                    </div>
+                </div>
+                <div class="about-intro-title1">
+                    总结
+                    <b>summary</b>
+                </div>
+                <div class="mihoyo-desc">
+                    <div>
+                        <p style="white-space: pre-wrap;">对于一个人来说，工作量有点大，很多地方过渡不自然。并没有弄很炫酷的布局是因为米哈游官网本身就是简约风，倒不如说，现在大部分的网页都是简约风，简约却总能体会出不简单。因为素材量的巨大，在处理素材时耗费了相当一部分时间，在产品页面中的人工桌面页面，人物的立绘png图片因为是ai抠的，所以不是很尽人意，但是要自己处理的话却要耗费一定的时间。前面的产品页面中有些人物图鉴和立绘是自己动手，就花了挺长时间，导致效率不高。</p>
+                        <p style="white-space: pre-wrap;">背景音乐选了挺长时间，最终没选择米哈游的音乐而是选择了EVA的<strong>《One last kiss》</strong>，是因为米哈游是忠实的EVA迷，用着公款追星。而且<strong>《One last kiss》</strong>的深蓝色曲风（自己编的名词，就是给人一种深蓝色的感觉，应该是沉稳低昂的感觉），与偏蓝色调的我的网页，风格是搭配的。</p>
+                        <p style="white-space: pre-wrap;">这个学期跟着老师，作业跟着米哈游，我学到了很多东西，对我来说挺酷的，让我们朝着技术宅迈进吧!</p>
+                        <p style="white-space: pre-wrap;">最后说一句：<strong>我想把mihoyo讲给你听</strong>。</p>
+                        <img src="pj.webp" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 页脚 -->
+    <section class="footer">
+        <div class="mihoyo-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-box">
+                        <img src="mihoyo-logo.png" alt="" class="logo-big">
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <div class="footer-link">
+                        <div>
+                            <span class="protocol1">隐私政策</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">自律公约</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">廉政举报</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">联系我们</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol">加入我们</span>
+                            <span class="protocol">|</span>
+                            <span class="protocol"><a to="/" style="color: #fff;" target="_blank">报告</a></span>
+                        </div>
+                    </div>
+                    <div class="footer-advice">
+                        <p>
+                            健康游戏忠告：抵制不良游戏，拒绝盗版游戏。注意自我保护，谨防受骗上当。适度游戏益脑，沉迷游戏伤身。合理安排时间，享受健康生活。
+                        </p>
+                        <div class="inline-info">
+                            <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=沪公网安备31010402001113号" target="_blank" style="color: #999;">
+                                沪公网安备31010402001113号
+                            </a>
+                            <span class="split-line">|</span>
+                            <span class="footer-filing-item">增值电信业务经营许可证：沪B2-20190555</span>
+
+                        </div>
+                    </div>
+                    <div class="footer-filing">
+                        <div class="footer-filing-tip">
+                            <span>互联网违法不良信息举报邮箱: tousu@mihoyo.com</span>
+                            <span>互联网违法不良信息举报电话: 021-60371750 （工作时间：每天10点 - 20点）</span>
+                        </div>
+                    </div>
+                    <div class="footer-tip">
+                        亲爱的市民朋友，上海警方反诈劝阻电话“962110”系专门针对避免您财产被骗受损而设，请您一旦收到来电，立即接听
+                    </div>
+                    <div class="footer-filing-content">
+                        <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" style="color: #999;">
+                            沪ICP备19018275号-4
+                        </a>
+                        <span class="split-line">|</span>
+                        <span class="footer-filing-item">沪网文〔2022〕1334-052号</span>
+                    </div>
+                    <div class="guanai-phone">
+                        未成年成长关爱热线：021-60371740 （服务时间：8:00-23:00）
+                    </div>
+                    <div class="footer-phone">
+                        <div class="mihoyo-copyright">©miHoYo | 上海米哈游影铁科技有限公司</div>
+                        <div class="complaint-phone">客服电话：400-666-6312</div>
+                    </div>
+                    <div class="footer-icon">
+                        <a href="https://v.yunaq.com/certificate?domain=www.mihoyo.com&amp;from=label&amp;code=90020" target="_blank">
+                            <img src="icon1.png" alt="">
+                        </a>
+                        <a href="http://www.shjbzx.cn/" target="_blank">
+                            <img src="icon2.png" alt="">
+                        </a>
+                        <a href="https://www.12377.cn/" target="_blank">
+                            <img src="icon3.png" alt="">
+                        </a>
+                        <a href="http://sq.ccm.gov.cn:80/ccnt/sczr/service/business/emark/toDetail/8955A9DDE1FF8B6CE053010A14ACA87F" target="_blank">
+                            <img src="icon4.png" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="icon5.png" alt="">
+                        </a>
+                        <a href="http://wap.scjgj.sh.gov.cn/businessCheck/verifKey.do?showType=extShow&amp;serial=9031000020190314100540000004452331-SAIC_SHOW_310000-20200120150237277642&amp;signData=MEYCIQCjn9IhIKfUHjPlx9W6xrYPZ4GA73Blopwp0iEzSX0OHQIhAOZm3tnlWLrgVXMtvgp5OibauIgiAa+2d+MQ7qzMIm6t" target="_blank">
+                            <img src="icon6.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 页脚end -->
+    
+</body>
+</html>
